@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Trattoria Bella Italia - Menú Completo</title>
+  
+  <!-- Metadatos para responsividad en móviles -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- Fuentes de Google (opcional) -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* RESET BÁSICO */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    html {
+      scroll-behavior: smooth; /* facilita la navegación ancla con desplazamiento suave */
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(to bottom right, #f4f4f4, #eaeaea);
+      color: #333;
+    }
+
+    /* CABECERA */
+    header {
+      background: #fdfdfd;
+      box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+    header .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem;
+      text-align: center;
+    }
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      color: #444;
+    }
+
+    /* NAV */
+    nav {
+      background: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+    }
+    nav a {
+      display: inline-block;
+      margin: 0 1rem;
+      padding: 0.5rem 1rem;
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+      transition: background 0.3s, color 0.3s;
+    }
+    nav a:hover {
+      background: #333;
+      color: #fff;
+      border-radius: 5px;
+    }
+
+    /* CONTENEDOR PRINCIPAL */
+    main {
+      max-width: 1200px;
+      margin: 1rem auto 3rem auto;
+      padding: 0 1rem;
+    }
+
+    /* SECCIONES */
+    section {
+      margin-bottom: 2rem;
+    }
+    section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: #222;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid #ddd;
+      display: inline-block;
+      padding-bottom: 0.25rem;
+    }
+
+    /* ESTILO DE CADA PLATO (DISH) */
+    .dish {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      margin: 1rem 0;
+      padding: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+    }
+    .dish:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.1);
+    }
+    .dish img {
+      width: 160px;
+      height: 110px;
+      object-fit: cover;
+      margin-right: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      transition: opacity 0.3s;
+    }
+    .dish:hover img {
+      opacity: 0.95;
+    }
+    .dish-info {
+      flex: 1;
+      min-width: 250px;
+    }
+    .dish-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      font-family: 'Playfair Display', serif;
+    }
+    .lang-block {
+      margin: 0.25rem 0;
+      font-size: 0.95rem;
+      line-height: 1.4;
+      position: relative;
+    }
+    .lang-label {
+      font-style: italic;
+      color: #666;
+      margin-right: 0.25rem;
+    }
+
+    /* ESTILO PRECIOS */
+    .price-block {
+      font-weight: bold;
+      color: #444;
+      margin-top: 0.5rem;
+    }
+    .dish-img {
+  position: relative;
+  width: 160px;       /* la medida de tu imagen */
+  height: 110px;      /* la medida de tu imagen */
+  margin-right: 1rem; /* mismo margen que tenías */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.dish-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1);
+  transition: transform 0.3s ease;
+}
+
+.dish:hover .dish-img img {
+  transform: scale(1.1);
+}
+
+
+    /* BOTÓN VOLVER ARRIBA (Back to top) */
+    #back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #333;
+      color: #fff;
+      padding: 0.6rem 1rem;
+      border-radius: 5px;
+      text-decoration: none;
+      display: none; /* se oculta de inicio */
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    #back-to-top:hover {
+      background: #555;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #fdfdfd;
+      text-align: center;
+      padding: 1rem;
+      color: #777;
+      font-size: 0.9rem;
+      box-shadow: 0 -1px 5px rgba(0,0,0,0.1);
+    }
+
+    /* RESPONSIVE BÁSICO */
+    @media screen and (max-width: 768px) {
+      .dish {
+        flex-direction: column;
+        align-items: center;
+      }
+      .dish img {
+        margin-right: 0;
+        margin-bottom: 1rem;
+        width: 100%;
+        height: auto;
+        max-height: 200px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ANCLA SUPERIOR PARA BOTÓN BACK-TO-TOP -->
+  <a id="top"></a>
+
+  <header>
+    <div class="header-content">
+      <h1>Trattoria Bella Italia</h1>
+    </div>
+    <nav>
+      <a href="#entrantes">Entrantes</a>
+      <a href="#primeros">Primeros</a>
+      <a href="#postres">Postres</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ===================== ENTRANTES ===================== -->
+    <section id="entrantes">
+      <h2>Entrantes / Starters / Antipasti</h2>
+
+      <!-- 1. Bruschetta al Pomodoro -->
+      <div class="dish">
+        <div class="dish-img">
+        <img src="images/01.jpg" alt="01" />
+        </div>
+        <div class="dish-info">
+          <div class="dish-title">Bruschetta al Pomodoro</div>
+          <div class="lang-block">
+            <span class="lang-label">[ES]</span> Pan tostado con tomate fresco, ajo y aceite de oliva.
+          </div>
+          <div class="lang-block">
+            <span class="lang-label">[EN]</span> Toasted bread with fresh tomato, garlic and olive oil.
+          </div>
+          <div class="lang-block">
+            <span class="lang-label">[IT]</span> Pane tostato con pomodoro fresco, aglio e olio d'oliva.
+          </div>
+          <div class="price-block">
+            <span class="lang-label">[ES]</span> Precio: 5,50 € |
+            <span class="lang-label">[EN]</span> €5.50 |
+            <span class="lang-label">[IT]</span> €5,50
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Caprese di Bufala -->
+      <div class="dish">
+        <div class="dish-img">
+        <img src="images/02.jpg" alt="02" />
+        </div>
+        <div class="dish-info">
+          <div class="dish-title">Caprese di Bufala</div>
+          <div class="lang-block">
+            <span class="lang-label">[ES]</span> Mozzarella de búfala, tomate y albahaca.
+          </div>
+          <div class="lang-block">
+            <span class="lang-label">[EN]</span> Buffalo mozzarella, fresh tomato, and basil.
+          </div>
+          <div class="lang-block">
+            <span class="lang-label">[IT]</span> Mozzarella di bufala, pomodoro e basilico fresco.
+          </div>
+          <div class="price-block">
+            <span class="lang-label">[ES]</span> Precio: 8,50 € |
+            <span class="lang-label">[EN]</span> €8.50 |
+            <span class="lang-label">[IT]</span> €8,50
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Carpaccio di Manzo -->
+      <div class="dish">
+        <div class="dish-img">
+        <img src="images/03.jpg" alt="03" />
+        </div>
+        <div class="dish-info">
+          <div class="dish-title">Carpaccio di Manzo</div>
+          <div class="lang-block">
+            <span class="lang-label">[ES]</span> Finas láminas de ternera con rúcula y parmesano.
+          </div>
+          <div class="lang-block">
+            <span class="lang-label">[EN]</span> Thin slices of beef with arugula and parmesan shavings.
+          </div>
+          <div class="lang-block">
+            <span class="lang-label">[IT]</span> Fettine sottili di manzo con rucola e scaglie di parmigiano.
+          </div>
+          <div class="price-block">
+            <span class="lang-label">[ES]</span> Precio: 10,50 € |
+            <span class="lang-label">[EN]</span> €10.50 |
+            <span class="lang-label">[IT]</span> €10,50
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. Antipasto Misto -->
+      <div class="dish">
+        <div class="dish-img">
+        <img src="images/04.png" alt="04" />
+        </div>
+        <div class="dish-info">
+          <div class="dish-title">Antipasto Misto</div>
+          <div class="lang-block">
+            <span class="lang-label">[ES]</span> Embutidos italianos, quesos y verduras encurtidas.
+          </div>
+          <div class="lang-block">
+            <span class="lang-label">[EN]</span> Italian cold cuts, cheeses and pickled vegetables.
+          </div>
+          <div class="lang-block">
+            <span class="lang-label">[IT]</span> Selezione di salumi, formaggi e verdure sott'olio.
+          </div>
+          <div class="price-block">
+            <span class="lang-label">[ES]</span> Precio: 12,00 € |
+            <span class="lang-label">[EN]</span> €12.00 |
+            <span class="lang-label">[IT]</span> €12,00
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. Calamari Fritti -->
+      <div class="dish">
+        <div class="dish-img">
+        <img src="images/05.jpg" alt="05" />
+        </div>
+        <div class="dish-info">
+          <div class="dish-title">Calamari Fritti</div>
+          <div class="lang-block">
+            <span class="lang-label">[ES]</span> Calamares fritos servidos con salsa de limón.
+          </div>
+          <div class="lang-block">
+            <span class="lang-label">[EN]</span> Fried squid with lemon sauce.
+          </div>
+          <div class="lang-block">
+            <span class="lang-label">[IT]</span> Calamari fritti con salsa al limone.
+          </div>
+          <div class="price-block">
+            <span class="lang-label">[ES]</span> Precio: 9,00 € |
+            <span class="lang-label">[EN]</span> €9.00 |
+            <span class="lang-label">[IT]</span> €9,00
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. Panelle Siciliane -->
+      <div class="dish">
+        <div class="dish-img">
+        <img src="images/06.jpg" alt="06" />
+        </div>
+        <div class="dish-info">
+          <div class="dish-title">Panelle Siciliane</div>
+          <div class="lang-block">
+            <span class="lang-label">[ES]</span> Tortitas de harina de garbanzo típicas de Sicilia.
+          </div>
+          <div class="lang-block">
+            <span class="lang-label">[EN]</span> Chickpea flour fritters typical of Sicily.
+          </div>
+          <div class="lang-block">
+            <span class="lang-label">[IT]</span> Frittelle di farina di ceci tipiche della Sicilia.
+          </div>
+          <div class="price-block">
+            <span class="lang-label">[ES]</span> Precio: 6,00 € |
+            <span class="lang-label">[EN]</span> €6.00 |
+            <span class="lang-label">[IT]</span> €6,00
+          </div>
+        </div>
+      </div>
+
+      <!-- 7. Arancini di Riso -->
+      <div class="dish">
+        <div class="dish-img">
+        <img src="images/07.jpg" alt="07" />
+        </div>
+        <div class="dish-info">
+          <div class="dish-title">Arancini di Riso</div>
+          <div class="lang-block">
+            <span class="lang-label">[ES]</span> Bolitas de arroz rellenas de ragú y mozzarella.
+          </div>
+          <div class="lang-block">
+            <span class="lang-label">[EN]</span> Rice balls stuffed with ragù and mozzarella.
+          </div>
+          <div class="lang-block">
+            <span class="lang-label">[IT]</span> Palline di riso con ragù e mozzarella.
+          </div>
+          <div class="price-block">
+            <span class="lang-label">[ES]</span> Precio: 7,50 € |
+            <span class="lang-label">[EN]</span> €7.50 |
+            <span class="lang-label">[IT]</span> €7,50
+          </div>
+        </div>
+      </div>
+
+      <!-- 8. Crostini con Funghi Porcini -->
+      <div class="dish">
+        <div class="dish-img">
+        <img src="images/08.jpg" alt="08" />
+        </div>
+        <div class="dish-info">
+          <div class="dish-title">Crostini con Funghi Porcini</div>
+          <div class="lang-block">
+            <span class="lang-label">[ES]</span> Pan tostado con setas salteadas y aceite de oliva.
+          </div>
+          <div class="lang-block">
+            <span class="lang-label">[EN]</span> Toasted bread with sautéed mushrooms and olive oil.
+          </div>
+          <div class="lang-block">
+            <span class="lang-label">[IT]</span> Crostini con funghi porcini e olio d'oliva.
+          </div>
+          <div class="price-block">
+            <span class="lang-label">[ES]</span> Precio: 8,00 € |
+            <span class="lang-label">[EN]</span> €8.00 |
+            <span class="lang-label">[IT]</span> €8,00
+          </div>
+        </div>
+      </div>
+
+      <!-- 9. Melanzane alla Parmigiana -->
+      <div class="dish">
+        <div class="dish-img">
+        <img src="images/09.jpg" alt="09" />
+        </div>
+        <div class="dish-info">
+          <div class="dish-title">Melanzane alla Parmigiana</div>
+          <div class="lang-block">
+            <span class="lang-label">[ES]</span> Berenjena horneada con tomate y mozzarella.
+          </div>
+          <div class="lang-block">
+            <span class="lang-label">[EN]</span> Baked eggplant with tomato sauce and mozzarella.
+          </div>
+          <div class="lang-block">
+            <span class="lang-label">[IT]</span> Melanzane al forno con pomodoro e mozzarella.
+          </div>
+          <div class="price-block">
+            <span class="lang-label">[ES]</span> Precio: 9,50 € |
+            <span class="lang-label">[EN]</span> €9.50 |
+            <span class="lang-label">[IT]</span> €9,50
+          </div>
+        </div>
+      </div>
+
+      <!-- 10. Insalata di Mare -->
+      <div class="dish">
+        <div class="dish-img">
+        <img src="images/010.jpg" alt="010" />
+        </div>
+        <div class="dish-info">
+          <div class="dish-title">Insalata di Mare</div>
+          <div class="lang-block">
+            <span class="lang-label">[ES]</span> Ensalada de mariscos con pulpo, calamares y mejillones.
+          </div>
+          <div class="lang-block">
+            <span class="lang-label">[EN]</span> Seafood salad with octopus, squid, and mussels.
+          </div>
+          <div class="lang-block">
+            <span class="lang-label">[IT]</span> Insalata di mare con polpo, calamari e cozze.
+          </div>
+          <div class="price-block">
+            <span class="lang-label">[ES]</span> Precio: 10,00 € |
+            <span class="lang-label">[EN]</span> €10.00 |
+            <span class="lang-label">[IT]</span> €10,00
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PRIMEROS ===================== -->
+    <section id="primeros">
+      <h2>Primeros / First Courses / Primi</h2>
+
+      <!-- 1. Spaghetti alla Carbonara -->
+      <div class="dish">
+        <div class="dish-img">
+        <img src="images/1.jpg" alt="1" />
+        </div>
+        <div class="dish-info">
+          <div class="dish-title">Spaghetti alla Carbonara</div>
+          <div class="lang-block">
+            <span class="lang-label">[ES]</span> Pasta con guanciale, huevos y queso pecorino.
+          </div>
+          <div class="lang-block">
+            <span class="lang-label">[EN]</span> Pasta with guanciale, eggs, and pecorino cheese.
+          </div>
+          <div class="lang-block">
+            <span class="lang-label">[IT]</span> Pasta con guanciale, uova e pecorino.
+          </div>
+          <div class="price-block">
+            <span class="lang-label">[ES]</span> Precio: 12,00 € |
+            <span class="lang-label">[EN]</span> €12.00 |
+            <span class="lang-label">[IT]</span> €12,00
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Rigatoni all’Amatriciana -->
+      <div class="dish">
+        <div class="dish-img">
+        <img src="images/2.jpg" alt="2" />
+        </div>
+        <div class="dish-info">
+          <div class="dish-title">Rigatoni all’Amatriciana</div>
+          <div class="lang-block">
+            <span class="lang-label">[ES]</span> Salsa de tomate, guanciale y pecorino.
+          </div>
+          <div class="lang-block">
+            <span class="lang-label">[EN]</span> Tomato sauce, guanciale, and pecorino cheese.
+          </div>
+          <div class="lang-block">
+            <span class="lang-label">[IT]</span> Salsa di pomodoro, guanciale e pecorino.
+          </div>
+          <div class="price-block">
+            <span class="lang-label">[ES]</span> Precio: 11,50 € |
+            <span class="lang-label">[EN]</span> €11.50 |
+            <span class="lang-label">[IT]</span> €11,50
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Gnocchi al Pesto -->
+      <div class="dish">
+        <div class="dish-img">
+        <img src="images/3.jpg" alt="3" />
+        </div>
+        <div class="dish-info">
+          <div class="dish-title">Gnocchi al Pesto</div>
+          <div class="lang-block">
+            <span class="lang-label">[ES]</span> Gnocchi de patata con salsa de albahaca y piñones.
+          </div>
+          <div class="lang-block">
+            <span class="lang-label">[EN]</span> Potato gnocchi with basil and pine nut sauce.
+          </div>
+          <div class="lang-block">
+            <span class="lang-label">[IT]</span> Gnocchi di patate con pesto di basilico e pinoli.
+          </div>
+          <div class="price-block">
+            <span class="lang-label">[ES]</span> Precio: 10,50 € |
+            <span class="lang-label">[EN]</span> €10.50 |
+            <span class="lang-label">[IT]</span> €10,50
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. Lasagne alla Bolognese -->
+      <div class="dish">
+        <div class="dish-img">
+        <img src="images/4.jpg" alt="4" />
+        </div>
+        <div class="dish-info">
+          <div class="dish-title">Lasagne alla Bolognese</div>
+          <div class="lang-block">
+            <span class="lang-label">[ES]</span> Láminas de pasta con ragú, bechamel y queso gratinado.
+          </div>
+          <div class="lang-block">
+            <span class="lang-label">[EN]</span> Pasta sheets with ragù, béchamel, and melted cheese.
+          </div>
+          <div class="lang-block">
+            <span class="lang-label">[IT]</span> Sfoglie di pasta con ragù, besciamella e formaggio gratinato.
+          </div>
+          <div class="price-block">
+            <span class="lang-label">[ES]</span> Precio: 13,50 € |
+            <span class="lang-label">[EN]</span> €13.50 |
+            <span class="lang-label">[IT]</span> €13,50
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. Ravioli Ricotta e Spinaci -->
+      <div class="dish">
+        <div class="dish-img">
+        <img src="images/5.jpg" alt="5" />
+        </div>
+        <div class="dish-info">
+          <div class="dish-title">Ravioli Ricotta e Spinaci</div>
+          <div class="lang-block">
+            <span class="lang-label">[ES]</span> Rellenos de ricotta y espinacas en salsa de mantequilla.
+          </div>
+          <div class="lang-block">
+            <span class="lang-label">[EN]</span> Stuffed with ricotta and spinach in a butter sauce.
+          </div>
+          <div class="lang-block">
+            <span class="lang-label">[IT]</span> Ripieni di ricotta e spinaci in salsa di burro.
+          </div>
+          <div class="price-block">
+            <span class="lang-label">[ES]</span> Precio: 13,00 € |
+            <span class="lang-label">[EN]</span> €13.00 |
+            <span class="lang-label">[IT]</span> €13,00
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. Risotto ai Funghi Porcini -->
+      <div class="dish">
+        <div class="dish-img">
+        <img src="images/6.jpeg" alt="6" />
+        </div>
+        <div class="dish-info">
+          <div class="dish-title">Risotto ai Funghi Porcini</div>
+          <div class="lang-block">
+            <span class="lang-label">[ES]</span> Arroz cremoso con setas porcini y parmesano.
+          </div>
+          <div class="lang-block">
+            <span class="lang-label">[EN]</span> Creamy rice with porcini mushrooms and parmesan cheese.
+          </div>
+          <div class="lang-block">
+            <span class="lang-label">[IT]</span> Riso cremoso con funghi porcini e parmigiano.
+          </div>
+          <div class="price-block">
+            <span class="lang-label">[ES]</span> Precio: 14,00 € |
+            <span class="lang-label">[EN]</span> €14.00 |
+            <span class="lang-label">[IT]</span> €14,00
+          </div>
+        </div>
+      </div>
+
+      <!-- 7. Penne all’Arrabbiata -->
+      <div class="dish">
+        <div class="dish-img">
+        <img src="images/7.jpg" alt="7" />
+        </div>
+        <div class="dish-info">
+          <div class="dish-title">Penne all’Arrabbiata</div>
+          <div class="lang-block">
+            <span class="lang-label">[ES]</span> Salsa de tomate picante, ajo y aceite de oliva.
+          </div>
+          <div class="lang-block">
+            <span class="lang-label">[EN]</span> Spicy tomato sauce with garlic and olive oil.
+          </div>
+          <div class="lang-block">
+            <span class="lang-label">[IT]</span> Salsa di pomodoro piccante con aglio e olio d'oliva.
+          </div>
+          <div class="price-block">
+            <span class="lang-label">[ES]</span> Precio: 10,50 € |
+            <span class="lang-label">[EN]</span> €10.50 |
+            <span class="lang-label">[IT]</span> €10,50
+          </div>
+        </div>
+      </div>
+
+      <!-- 8. Pasta alla Norma -->
+      <div class="dish">
+        <div class="dish-img">
+        <img src="images/8.jpg" alt="8" />
+        </div>
+        <div class="dish-info">
+          <div class="dish-title">Pasta alla Norma</div>
+          <div class="lang-block">
+            <span class="lang-label">[ES]</span> Berenjena, tomate y ricotta salata.
+          </div>
+          <div class="lang-block">
+            <span class="lang-label">[EN]</span> Eggplant, tomato sauce, and salted ricotta.
+          </div>
+          <div class="lang-block">
+            <span class="lang-label">[IT]</span> Melanzane, salsa di pomodoro e ricotta salata.
+          </div>
+          <div class="price-block">
+            <span class="lang-label">[ES]</span> Precio: 11,00 € |
+            <span class="lang-label">[EN]</span> €11.00 |
+            <span class="lang-label">[IT]</span> €11,00
+          </div>
+        </div>
+      </div>
+
+      <!-- 9. Tagliatelle al Ragù di Cinghiale -->
+      <div class="dish">
+        <div class="dish-img">
+        <img src="images/9.jpeg" alt="9" />
+        </div>
+        <div class="dish-info">
+          <div class="dish-title">Tagliatelle al Ragù di Cinghiale</div>
+          <div class="lang-block">
+            <span class="lang-label">[ES]</span> Salsa de jabalí cocinada a fuego lento.
+          </div>
+          <div class="lang-block">
+            <span class="lang-label">[EN]</span> Slow-cooked wild boar sauce.
+          </div>
+          <div class="lang-block">
+            <span class="lang-label">[IT]</span> Salsa di cinghiale cotta a fuoco lento.
+          </div>
+          <div class="price-block">
+            <span class="lang-label">[ES]</span> Precio: 15,00 € |
+            <span class="lang-label">[EN]</span> €15.00 |
+            <span class="lang-label">[IT]</span> €15,00
+          </div>
+        </div>
+      </div>
+
+      <!-- 10. Pizza Margherita Tradizionale -->
+      <div class="dish">
+        <div class="dish-img">
+        <img src="images/10.jpg" alt="10" />
+        </div>
+        <div class="dish-info">
+          <div class="dish-title">Pizza Margherita Tradizionale</div>
+          <div class="lang-block">
+            <span class="lang-label">[ES]</span> Masa de fermentación lenta, tomate, mozzarella y albahaca.
+          </div>
+          <div class="lang-block">
+            <span class="lang-label">[EN]</span> Slow-fermented dough, tomato, mozzarella, and fresh basil.
+          </div>
+          <div class="lang-block">
+            <span class="lang-label">[IT]</span> Impasto a lenta lievitazione, pomodoro, mozzarella e basilico fresco.
+          </div>
+          <div class="price-block">
+            <span class="lang-label">[ES]</span> Precio: 9,00 € |
+            <span class="lang-label">[EN]</span> €9.00 |
+            <span class="lang-label">[IT]</span> €9,00
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== POSTRES ===================== -->
+    <section id="postres">
+      <h2>Postres / Desserts / Dolci</h2>
+
+      <!-- 1. Tiramisù -->
+      <div class="dish">
+        <div class="dish-img">
+        <img src="images/21.jpg" alt="21"/>
+        </div>
+        <div class="dish-info">
+          <div class="dish-title">Tiramisù</div>
+          <div class="lang-block">
+            <span class="lang-label">[ES]</span> Bizcochos empapados en café y crema de mascarpone.
+          </div>
+          <div class="lang-block">
+            <span class="lang-label">[EN]</span> Ladyfingers soaked in coffee and mascarpone cream.
+          </div>
+          <div class="lang-block">
+            <span class="lang-label">[IT]</span> Savoiardi imbevuti di caffè e crema di mascarpone.
+          </div>
+          <div class="price-block">
+            <span class="lang-label">[ES]</span> Precio: 6,50 € |
+            <span class="lang-label">[EN]</span> €6.50 |
+            <span class="lang-label">[IT]</span> €6,50
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Panna Cotta con Frutos Rojos -->
+      <div class="dish">
+        <div class="dish-img">
+        <img src="images/22.jpg" alt="22" />
+        </div>
+        <div class="dish-info">
+          <div class="dish-title">Panna Cotta con Frutos Rojos</div>
+          <div class="lang-block">
+            <span class="lang-label">[ES]</span> Postre lácteo cuajado con coulis de frutos del bosque.
+          </div>
+          <div class="lang-block">
+            <span class="lang-label">[EN]</span> Set cream dessert with a mixed berry coulis.
+          </div>
+          <div class="lang-block">
+            <span class="lang-label">[IT]</span> Dessert di panna cotta con coulis di frutti di bosco.
+          </div>
+          <div class="price-block">
+            <span class="lang-label">[ES]</span> Precio: 6,00 € |
+            <span class="lang-label">[EN]</span> €6.00 |
+            <span class="lang-label">[IT]</span> €6,00
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Cannoli Siciliani -->
+      <div class="dish">
+        <div class="dish-img">
+        <img src="images/23.jpg" alt="23" />
+        </div>
+        <div class="dish-info">
+          <div class="dish-title">Cannoli Siciliani</div>
+          <div class="lang-block">
+            <span class="lang-label">[ES]</span> Canutillos crujientes rellenos de ricotta y pistachos.
+          </div>
+          <div class="lang-block">
+            <span class="lang-label">[EN]</span> Crisp pastry tubes with ricotta and pistachios.
+          </div>
+          <div class="lang-block">
+            <span class="lang-label">[IT]</span> Cialde croccanti ripiene di ricotta e pistacchi.
+          </div>
+          <div class="price-block">
+            <span class="lang-label">[ES]</span> Precio: 6,50 € |
+            <span class="lang-label">[EN]</span> €6.50 |
+            <span class="lang-label">[IT]</span> €6,50
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. Profiteroles con Crema de Avellana -->
+      <div class="dish">
+        <div class="dish-img">
+        <img src="images/24.jpg" alt="24" />
+        </div>
+        <div class="dish-info">
+          <div class="dish-title">Profiteroles con Crema de Avellana</div>
+          <div class="lang-block">
+            <span class="lang-label">[ES]</span> Bolitas de masa choux con salsa de chocolate y avellanas.
+          </div>
+          <div class="lang-block">
+            <span class="lang-label">[EN]</span> Choux pastry puffs with chocolate-hazelnut sauce.
+          </div>
+          <div class="lang-block">
+            <span class="lang-label">[IT]</span> Bignè con salsa al cioccolato e nocciole.
+          </div>
+          <div class="price-block">
+            <span class="lang-label">[ES]</span> Precio: 6,00 € |
+            <span class="lang-label">[EN]</span> €6.00 |
+            <span class="lang-label">[IT]</span> €6,00
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. Torta Caprese -->
+      <div class="dish">
+        <div class="dish-img">
+        <img src="images/25.jpg" alt="25" />
+        </div>
+        <div class="dish-info">
+          <div class="dish-title">Torta Caprese</div>
+          <div class="lang-block">
+            <span class="lang-label">[ES]</span> Bizcocho de chocolate y almendras, típico de Capri.
+          </div>
+          <div class="lang-block">
+            <span class="lang-label">[EN]</span> Chocolate and almond cake, typical of Capri.
+          </div>
+          <div class="lang-block">
+            <span class="lang-label">[IT]</span> Torta al cioccolato e mandorle, tipica di Capri.
+          </div>
+          <div class="price-block">
+            <span class="lang-label">[ES]</span> Precio: 5,50 € |
+            <span class="lang-label">[EN]</span> €5.50 |
+            <span class="lang-label">[IT]</span> €5,50
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. Torta della Nonna -->
+      <div class="dish">
+        <div class="dish-img">
+        <img src="images/26.jpg" alt="26" />
+        </div>
+        <div class="dish-info">
+          <div class="dish-title">Torta della Nonna</div>
+          <div class="lang-block">
+            <span class="lang-label">[ES]</span> Tarta de crema pastelera con piñones.
+          </div>
+          <div class="lang-block">
+            <span class="lang-label">[EN]</span> Pastry tart with custard cream and pine nuts.
+          </div>
+          <div class="lang-block">
+            <span class="lang-label">[IT]</span> Crostata con crema pasticcera e pinoli.
+          </div>
+          <div class="price-block">
+            <span class="lang-label">[ES]</span> Precio: 6,00 € |
+            <span class="lang-label">[EN]</span> €6.00 |
+            <span class="lang-label">[IT]</span> €6,00
+          </div>
+        </div>
+      </div>
+
+      <!-- 7. Babà al Rum -->
+      <div class="dish">
+        <div class="dish-img">
+        <img src="images/27.jpg" alt="27" />
+        </div>
+        <div class="dish-info">
+          <div class="dish-title">Babà al Rum</div>
+          <div class="lang-block">
+            <span class="lang-label">[ES]</span> Bizcocho esponjoso bañado en almíbar de ron.
+          </div>
+          <div class="lang-block">
+            <span class="lang-label">[EN]</span> Spongy cake soaked in rum syrup.
+          </div>
+          <div class="lang-block">
+            <span class="lang-label">[IT]</span> Dolce soffice immerso in sciroppo al rum.
+          </div>
+          <div class="price-block">
+            <span class="lang-label">[ES]</span> Precio: 5,50 € |
+            <span class="lang-label">[EN]</span> €5.50 |
+            <span class="lang-label">[IT]</span> €5,50
+          </div>
+        </div>
+      </div>
+
+      <!-- 8. Zabaione con Galletas -->
+      <div class="dish">
+        <div class="dish-img">
+        <img src="images/28.jpg" alt="28" />
+        </div>
+        <div class="dish-info">
+          <div class="dish-title">Zabaione con Galletas</div>
+          <div class="lang-block">
+            <span class="lang-label">[ES]</span> Crema de yema de huevo montada con vino dulce.
+          </div>
+          <div class="lang-block">
+            <span class="lang-label">[EN]</span> Egg yolk cream whisked with sweet wine.
+          </div>
+          <div class="lang-block">
+            <span class="lang-label">[IT]</span> Crema di tuorli d'uovo con vino dolce.
+          </div>
+          <div class="price-block">
+            <span class="lang-label">[ES]</span> Precio: 5,50 € |
+            <span class="lang-label">[EN]</span> €5.50 |
+            <span class="lang-label">[IT]</span> €5,50
+          </div>
+        </div>
+      </div>
+
+      <!-- 9. Semifreddo al Limoncello -->
+      <div class="dish">
+        <div class="dish-img">
+        <img src="images/29.jpeg" alt="29" />
+        </div>
+        <div class="dish-info">
+          <div class="dish-title">Semifreddo al Limoncello</div>
+          <div class="lang-block">
+            <span class="lang-label">[ES]</span> Helado cremoso con el aroma cítrico del licor.
+          </div>
+          <div class="lang-block">
+            <span class="lang-label">[EN]</span> Creamy ice dessert with the citrus flavor of Limoncello.
+          </div>
+          <div class="lang-block">
+            <span class="lang-label">[IT]</span> Dessert gelato cremoso con profumo di limoncello.
+          </div>
+          <div class="price-block">
+            <span class="lang-label">[ES]</span> Precio: 6,50 € |
+            <span class="lang-label">[EN]</span> €6.50 |
+            <span class="lang-label">[IT]</span> €6,50
+          </div>
+        </div>
+      </div>
+
+      <!-- 10. Gelato Artigianale -->
+      <div class="dish">
+        <div class="dish-img">
+        <img src="images/30.jpg" alt="30" />
+        </div>
+        <div class="dish-info">
+          <div class="dish-title">Gelato Artigianale</div>
+          <div class="lang-block">
+            <span class="lang-label">[ES]</span> Helado casero con sabores variados (chocolate, vainilla, pistacho).
+          </div>
+          <div class="lang-block">
+            <span class="lang-label">[EN]</span> Homemade ice cream (chocolate, vanilla, pistachio).
+          </div>
+          <div class="lang-block">
+            <span class="lang-label">[IT]</span> Gelato artigianale in vari gusti (cioccolato, vaniglia, pistacchio).
+          </div>
+          <div class="price-block">
+            <span class="lang-label">[ES]</span> Precio: 5,50 € |
+            <span class="lang-label">[EN]</span> €5.50 |
+            <span class="lang-label">[IT]</span> €5,50
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- BOTÓN VOLVER ARRIBA -->
+  <a id="back-to-top" href="#top">↑ Top</a>
+
+  <footer>
+    <h4>&copy; 2025 Trattoria Bella Italia</h4>
+  </footer>
+
+  <!-- PEQUEÑO SCRIPT JS PARA MOSTRAR/OCULTAR BOTÓN "VOLVER ARRIBA" -->
+  <script>
+    const backToTopBtn = document.getElementById('back-to-top');
+
+    window.addEventListener('scroll', () => {
+      // Mostrar el botón cuando se hace scroll más allá de 200px
+      if (window.scrollY > 200) {
+        backToTopBtn.style.display = 'block';
+      } else {
+        backToTopBtn.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>
